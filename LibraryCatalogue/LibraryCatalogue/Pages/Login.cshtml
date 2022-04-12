@@ -1,0 +1,23 @@
+﻿@page
+@model LibraryCatalog.Pages.LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<div class="text-center">
+    <h1 class="display-5">Login</h1>
+    <p>Please enter your Username / Password</p>
+    <br/>
+    <form method="post">
+        Username:
+        <input type="text" name="Username" autocomplete="username"/>
+        <br/>
+        <br/>
+        Password:
+        <input type="password" name="Password" autocomplete="current-password"/>
+        <br/>
+        <br/>
+        <input type="submit" name="Login"/>
+    </form>
+</div>
