@@ -16,21 +16,19 @@ namespace LibraryCatalog.Pages
 
         public void OnGet()
         {
-            _logger.LogTrace("OnGet function called");
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            _logger.LogDebug("OnPost");
-
-            _logger.LogDebug("Login Form Submitted!");
-
-            Console.WriteLine("Login Submitted");
+            if (!ModelState.IsValid) return Page();
 
             var formData = await Request.ReadFormAsync();
 
             var userName = formData["Username"];
             var password = formData["Password"];
+
+            _logger.LogInformation($"Login Attempt Username: {userName}");
+
             return Page();
         }
     }
