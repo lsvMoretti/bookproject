@@ -1,22 +1,24 @@
 using System.Security.Claims;
+using LibraryCatalog.Models;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace LibraryCatalog.Pages
 {
-    public class LoginModel : PageModel
+    public class RegisterModel : PageModel
     {
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(ILogger<LoginModel> logger)
+        public RegisterModel(ILogger<LoginModel> logger)
         {
             _logger = logger;
         }
 
         public void OnGet()
         {
-            _logger.LogInformation("Loading LoginModel");
+            _logger.LogInformation("Loading RegisterModel");
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -27,8 +29,8 @@ namespace LibraryCatalog.Pages
 
             var userName = formData["Username"];
             var password = formData["Password"];
-
-            _logger.LogInformation($"Login Attempt Username: {userName}");
+            var email = formData["Email"];
+            
 
             return Page();
         }

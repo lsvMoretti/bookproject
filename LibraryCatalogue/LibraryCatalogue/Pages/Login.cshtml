@@ -2,7 +2,17 @@
 @model LibraryCatalog.Pages.LoginModel
 @{
     ViewData["Title"] = "Login";
+
+    @functions{
+
+        public void LoadRegisterPage()
+        {
+            RedirectToPage("Register");
+        }
+
+    }
 }
+
 
 
 <div class="text-center">
@@ -18,6 +28,9 @@
         <input type="password" name="Password" autocomplete="current-password"/>
         <br/>
         <br/>
-        <input type="submit" name="Login"/>
+        <input type="submit" name="Login" class="btn btn-primary"/>
     </form>
+    <br/>
+    <p>Don't have an account? Register below!</p>
+    <a href="/register" class="btn btn-secondary">Register</a>
 </div>

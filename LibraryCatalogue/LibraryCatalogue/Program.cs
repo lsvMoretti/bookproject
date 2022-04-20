@@ -1,4 +1,15 @@
+using LibraryCatalog.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using LibraryCatalog.Data;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("LibraryCatalogContextConnection");;
+
+builder.Services.AddDbContext<LibraryCatalogContext>(options =>
+    options.UseSqlServer(connectionString));;
+
+builder.Services.AddDefaultIdentity<LibraryCatalogUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<LibraryCatalogContext>();;
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -20,6 +31,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
