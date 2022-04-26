@@ -10,15 +10,18 @@ var identityConnectionString = builder.Configuration.GetConnectionString("Defaul
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(identityConnectionString));
 
+/*
 var libraryConnectionString = builder.Configuration.GetConnectionString("LibraryConnection");
 builder.Services.AddDbContext<LibraryContext>(options =>
-    options.UseSqlServer(libraryConnectionString));
+    options.UseSqlServer(libraryConnectionString));*/
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<LibraryContext>();
 
 var app = builder.Build();
 
